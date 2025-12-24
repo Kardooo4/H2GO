@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmation - H2GO</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-light">
+    <div class="container my-5">
+      <div class="card p-4">
+        <h2 class="mb-4">✅ Order Confirmation</h2>
+        <div id="orderSummary" class="mb-3"></div>
+
+        <button class="btn btn-success" onclick="notifyFMD()">
+          Notify FMD & Finish
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const order = JSON.parse(localStorage.getItem("latestOrder"));
+
+      // ✅ Set reorder reminder for 3 days later
+      const reminderIn3Days = Date.now() + 3 * 24 * 60 * 60 * 1000;
+      localStorage.setItem("reorderReminder", reminderIn3Days);
+
+      if (!order) {
+        document.getElementById("orderSummary").innerHTML =
+          "<p>No order data found.</p>";
+      } else {
+        const summaryHTML = `
+      <p><strong>Room Number:</strong> ${order.room}</p>
+      <p><strong>Bottle Size:</strong> ${order.size}</p>
+      <p><strong>Quantity:</strong> ${order.quantity}</p>
+      <p><strong>Delivery Time:</strong> ${
+        order.delivery.includes("Sun-Morning")
+          ? "Tuesday (9:00 AM)"
+          : "Thursday (2:00 PM)"
+      }</p>
+      <p><strong>Status:</strong> Scheduled ✅</p>
+      <p><strong>Payment Method:</strong> ${order.payment}</p>
+      <p><strong>Notes:</strong> ${order.notes}</p>
+      <p><strong>Total Price:</strong> ${order.price.toLocaleString()} IQD</p>
+      <p><strong>User Email:</strong> ${order.email}</p>
+      <p><strong>Order Time:</strong> ${order.time}</p>
+    `;
+        document.getElementById("orderSummary").innerHTML = summaryHTML;
+      }
+
+      // ✅ Simulate notify
+      function notifyFMD() {
+        alert(
+          "✅ Order completed successfully! Your request has been processed."
+        );
+      }
+    </script>
+  </body>
+</html>
