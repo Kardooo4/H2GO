@@ -1,0 +1,57 @@
+/* Adjust the size of the images */
+.carousel-inner img {
+  width: 500px;
+  height: 500px; /* or set a specific height if needed */
+  object-fit: cover;
+}
+
+/* Position the order button over the carousel */
+.carousel-container {
+  position: relative;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.order-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+}
+
+/* Extra styling for spacing, if necessary */
+.heading-div {
+  margin-bottom: 20px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  padding: 120px;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.carousel-container {
+  position: relative;
+}
+
+body {
+  background: #f8f9fa;
+}
+.card {
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+}
+.card h2 {
+  font-weight: 700;
+}
+.link {
+  font-size: 0.9rem;
+}
